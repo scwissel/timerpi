@@ -1,0 +1,7 @@
+{
+  "www" : {
+    "username": "username",
+    "password": "secret",
+    "port": "3000"
+  }
+}
