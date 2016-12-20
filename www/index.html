@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Timer</title>
+   <link rel="icon" type="image/png" href="favicon.png"/>
+   <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+   <link rel="apple-touch-icon" href="favicon.png"/>
+   <link rel="icon" type="image/png" href="favicon.png"/>
+   <script src="https://code.jquery.com/jquery-latest.js"></script> 
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+   <!-- Optional theme -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+   <!--<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>-->
+   <script src="/timerws/socket.io/socket.io.js"></script>
+   <script src="relay.js"></script>
+   <style type="text/css">
+     body { padding-top: 60px; }
+   </style>
+ </head>
+ <body role="document">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#control" data-toggle="tab">Timer</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#status" data-toggle="tab">Status</a></li>
+            <!--<li><a href="#log" data-toggle="tab">Log</a></li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+   <div class="container theme-showcase" role="main">
+     <div class="tab-content">
+       <div id="control" class="tab-pane active">
+         <div class="panel panel-default">
+           <div class="panel-body">
+             <p>
+               <H1>Front: <span id="frontrelaystatus" class="label label-danger">...</span>
+               </H1>
+               <small>
+                 <div id="sincedatediv">for <span id="frontsincedate">...</span>
+                 &mdash; 
+                 <span id="fronttemp">...</span>&#8457;
+                 </div>
+               </small>
+             </p>
+             <p>
+               <H1>Back: <span id="backrelaystatus" class="label label-danger">...</span>
+               </H1>
+               <small>
+                 <div id="sincedatediv">for <span id="backsincedate">...</span>
+                 &mdash; 
+                 <span id="backtemp">...</span>&#8457;
+                 </div>
+               </small>
+             </p>
+             <p>
+               <H1>West: <span id="westrelaystatus" class="label label-danger">...</span>
+               </H1>
+               <small>
+                 <div id="sincedatediv">for <span id="westsincedate">...</span>
+                 &mdash; 
+                 <span id="westtemp">...</span>&#8457;
+                 </div>
+               </small>
+             </p>
+             <p>
+               <div id="alertmessage" class="alert alert-warning" role="alert">
+               </div>
+             </p>
+           </div>
+           <div class="panel-footer">
+             <small>
+             last updated: <span id="asofdate">...</span>
+             &mdash; 
+             CPU <span id="cputemp">...</span>&#8457;
+             </small>
+           </div>
+         </div>
+       </div>
+       <div id="log" class="tab-pane">
+         <div class="panel panel-default">
+           <div class="panel-heading">Open Door Log &nbsp;
+<div class="btn-group btn-group-xs" role="group">
+  <button id="lograngetoday" type="button" class="btn btn-default">Today</button>
+  <button id="lograngesinceyesterday" type="button" class="btn btn-default">Since Yesterday</button>
+  <button id="lograngelastweek" type="button" class="btn btn-default">Last Week</button>
+</div>
+&nbsp;
+          </div>
+           <div id="positionhistory_data" xstyle="width:800; height:120"></div>
+           <div class="panel-footer">
+             <small>
+             last updated: <span id="historyasofdate">...</span>
+             </small>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </body>
+</html>

@@ -3,5 +3,21 @@
     "username": "username",
     "password": "secret",
     "port": "3000"
+  },
+  "relayconfig": {
+    "logintervalsecs": 900,
+    "tempenabled": true,
+    "tempintervalsecs": 30,
+    "statusenabled": true,
+    "statusintervalsecs": 1,
+    "relays": [
+      { "location": "back",  "gpio": "17", "w1deviceid": "28-0115622415ff" },
+      { "location": "front", "gpio": "22", "w1deviceid": "28-01156206f1ff" },
+      { "location": "west",  "gpio": "27", "w1deviceid": "28-0115620830ff" }
+    ]
+  },
+  "cputempsensor": {
+    "enabled": true,
+    "intervalsecs": 5
   }
 }
