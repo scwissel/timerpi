@@ -54,9 +54,9 @@ function displayunknown() {
 function updaterelaystatus(data,relay) {
   $('#'+relay+'relaystatus').html(data['relays'][relay]['status']);
   if (data['relays'][relay]['status'] === 'Off') {
-    $('#'+relay+'relaystatus').removeClass('label-danger').addClass('label-success');
+    $('#'+relay+'relaystatus').removeClass('label-danger').addClass('label-default');
   } else {
-    $('#'+relay+'relaystatus').removeClass('label-success').addClass('label-danger');
+    $('#'+relay+'relaystatus').removeClass('label-default').addClass('label-danger');
   }
   $('#'+relay+'temp').html(data['relays'][relay]['temp']);
   $('#'+relay+'sincedate').html(gettextduration(new Date(data['relays'][relay]['asofdate']),new Date()));
