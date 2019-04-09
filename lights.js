@@ -10,6 +10,14 @@ var lights = {
                     exec('/home/pi/lightsoff.sh');
   },
 
+  turnfountainon:      function () {
+                    exec('/home/pi/fountainon.sh');
+  },
+
+  turnfountainoff:     function () {
+                    exec('/home/pi/fountainoff.sh');
+  },
+
   getstatus:   function (location,gpio,callback) {
                  exec('gpio -g read ' + gpio, (error, stdout, stderr) => {
                    if (error) {

@@ -105,6 +105,14 @@ function turnlightsoff() {
   lights.turnoff();
 }
 
+function turnfountainon() {
+  lights.turnfountainon();
+}
+
+function turnfountainoff() {
+  lights.turnfountainoff();
+}
+
 function getresponse() {
   var response = { status: "OK",
                    relays: {},
@@ -125,7 +133,7 @@ io.on('connection', function(socket) {
   socket.emit('status',getresponse());
 });
 
-// Express route for incoming requests for the garage door
+// Express route for incoming requests for the timer
 app.get('/timer/:command', function(req, res) {
   var cmdresponse = getresponse();
   
@@ -137,6 +145,26 @@ app.get('/timer/:command', function(req, res) {
     res.status(200).send(cmdresponse);
   } else if (req.params.command === 'off') {
     turnlightsoff();
+    res.status(200).send(cmdresponse);
+  } else {
+    cmdresponse.status = "Error";
+    cmdresponse.message = "Invalid command: " + req.params.command;
+    res.status(200).send(cmdresponse);
+  }
+}); 
+
+// Express route for incoming requests for the fountain
+app.get('/fountain/:command', function(req, res) {
+  var cmdresponse = getresponse();
+  
+  if (req.params.command === 'status') {
+    // just the response is all that is needed
+    res.status(200).send(cmdresponse);
+  } else if (req.params.command === 'on') {
+    turnfountainon();
+    res.status(200).send(cmdresponse);
+  } else if (req.params.command === 'off') {
+    turnfountainoff();
     res.status(200).send(cmdresponse);
   } else {
     cmdresponse.status = "Error";
